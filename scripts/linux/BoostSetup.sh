@@ -64,7 +64,7 @@ sudo ldconfig
 cd ../../
 
 # Remove all source files
-rm -rf ${FOLDER_NAME}
+sudo rm -rf ${FOLDER_NAME}
 
 # Inform user that Boost 1.55 was successfully installed
 echo "Boost 1.55 was successfully installed."
