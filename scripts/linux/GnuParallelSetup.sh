@@ -13,17 +13,6 @@ echo "Setting up Gnu Parallel..."
 
 
 #----------------------------------------------------------
-# Installing dependent packages
-#----------------------------------------------------------
-
-# Inform the user about the next action
-echo "Installing the dependent packages build-essentials g++ gcc..."
-
-# Execute the action
-sudo apt-get -y install build-essentials g++ gcc
-
-
-#----------------------------------------------------------
 # Installing Gnu parallel
 #----------------------------------------------------------
 
