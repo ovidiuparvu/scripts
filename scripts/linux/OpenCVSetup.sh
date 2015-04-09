@@ -3,13 +3,13 @@
 ###########################################################
 #
 #
-# OpenCV 2.4.8 setup
+# OpenCV 2.4.10 setup
 #
 #
 ###########################################################
 
-# Starting setup of OpenCV 2.4.8
-echo "Setting up OpenCV 2.4.8..."
+# Starting setup of OpenCV 2.4.10
+echo "Setting up OpenCV 2.4.10..."
 
 
 #----------------------------------------------------------
@@ -28,10 +28,10 @@ sudo apt-get -y install libopencv-dev build-essential cmake git libgtk2.0-dev pk
 #----------------------------------------------------------
 
 # Inform the user about the next action
-echo "Downloading and installing the OpenCV 2.4.8 library..."
+echo "Downloading and installing the OpenCV 2.4.10 library..."
 
 # Constant values definitions
-FOLDER_NAME="OpenCV2.4.8"
+FOLDER_NAME="OpenCV2.4.10"
 
 # Create a new folder for storing the source code
 mkdir ${FOLDER_NAME}
@@ -40,13 +40,13 @@ mkdir ${FOLDER_NAME}
 cd ${FOLDER_NAME}
 
 # Download source code
-wget http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/2.4.8/opencv-2.4.8.zip
+wget http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/2.4.10/opencv-2.4.10.zip
 
 # Extract archive
-unzip opencv-2.4.8.zip
+unzip opencv-2.4.10.zip
 
 # Change directory
-cd opencv-2.4.8
+cd opencv-2.4.10
 
 # Create a build directory
 mkdir build
@@ -75,5 +75,5 @@ cd ../../../
 # Remove all source files
 rm -rf ${FOLDER_NAME}
 
-# Inform user that OpenCV 2.4.8 was successfully installed
-echo "OpenCV 2.4.8 was successfully installed."
+# Inform user that OpenCV 2.4.10 was successfully installed
+echo "OpenCV 2.4.10 was successfully installed."
