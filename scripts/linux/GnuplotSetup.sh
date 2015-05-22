@@ -60,8 +60,5 @@ sudo make install
 # Return to the parent directory
 cd ../../
 
-# Remove all source files
-rm -rf ${FOLDER_NAME}
-
 # Inform user that Gnuplot was successfully installed
 echo "Gnuplot was successfully installed."
