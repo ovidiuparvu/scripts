@@ -72,8 +72,5 @@ sudo ldconfig
 # Return to the parent directory
 cd ../../../
 
-# Remove all source files
-rm -rf ${FOLDER_NAME}
-
 # Inform user that OpenCV 2.4.10 was successfully installed
 echo "OpenCV 2.4.10 was successfully installed."
