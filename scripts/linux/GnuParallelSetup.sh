@@ -49,8 +49,5 @@ sudo make install
 # Return to the parent directory
 cd ../../
 
-# Remove all source files
-rm -rf ${FOLDER_NAME}
-
 # Inform user that Gnu parallel was successfully installed
 echo "Gnu parallel was successfully installed."
