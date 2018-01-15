@@ -1,4 +1,4 @@
-scripts
+Scripts
 =======
 
-A repository of scripts for various operating systems and purposes.
+A repository of scripts.
