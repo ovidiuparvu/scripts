@@ -79,8 +79,8 @@ printMessage "Successfully updated the cabal dependency list.";
 # Clone the shellcheck repository
 printMessage "Cloning the shellcheck repository...";
 
-rm -rf "${SHELLCHECK_DIR_REL_PATH}" && \
-git clone ${SHELLCHECK_GITHUB_URL};
+rm -rf "${SHELLCHECK_DIR_REL_PATH}" &&                          \
+git clone ${SHELLCHECK_GITHUB_URL} "${SHELLCHECK_DIR_REL_PATH}";
 checkReturnCode "Failed to clone the shellcheck repository.";
 
 printMessage "Successfully cloned the shellcheck repository.";
