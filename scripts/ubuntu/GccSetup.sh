@@ -121,7 +121,7 @@ mkdir -p "${GCC_BUILD_DIR_PATH}" &&             \
 cd "${GCC_BUILD_DIR_PATH}" &&                   \
 "${GCC_SRC_DIR_PATH}/configure"                 \
     --prefix="${INSTALL_DIR_PATH}"              \
-    --program-suffix="${gccBaseVersion}"        \
+    --program-suffix="-${gccBaseVersion}"       \
     --with-local-prefix="${INSTALL_DIR_PATH}"   \
     --enable-multiarch                          \
     --enable-multilib                           \
