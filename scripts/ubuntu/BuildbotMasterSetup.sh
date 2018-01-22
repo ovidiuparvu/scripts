@@ -16,7 +16,7 @@
 echo "Installing the dependent packages python2.7 python-setuptools python-pip...";
 
 # Execute action
-sudo apt-get -y install python2.7 python-setuptools python-pip
+sudo apt-get -y install python2.7 python2.7-dev python-setuptools python-pip
 
 
 #--------------------------------------------------------
