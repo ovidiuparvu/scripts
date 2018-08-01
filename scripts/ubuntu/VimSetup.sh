@@ -7,6 +7,7 @@
 
 CPUS=$(nproc --all);
 CURRENT_DIR_PATH="$(pwd)";
+INSTALL_DIR_PATH="/usr/local";
 USERNAME=$(whoami);
 VIM_DIR_PATH="${CURRENT_DIR_PATH}/vim";
 VIM_SRC_DIR_PATH="${VIM_DIR_PATH}/src";
@@ -69,7 +70,11 @@ ${SUDO_CMD} apt install -y  \
     g++                     \
     gcc                     \
     git                     \
-    make;
+    libncurses-dev          \
+    make                    \
+    python-dev              \
+    python3-dev             \
+    xorg-dev;
 checkReturnCode "Failed to install dependencies.";
 
 printMessage "Successfully installed dependencies.";
@@ -82,10 +87,27 @@ checkReturnCode "Failed to clone vim git repository.";
 
 printMessage "Successfully cloned vim git repository.";
 
+# Configure vim
+printMessage "Configuring vim...";
+
+cd "${VIM_SRC_DIR_PATH}" &&         \
+CFLAGS="-g -O3"                     \
+./configure                         \
+    --prefix="${INSTALL_DIR_PATH}"  \
+    --enable-cscope                 \
+    --enable-fail-if-missing        \
+    --enable-gui=auto               \
+    --enable-pythoninterp=dynamic   \
+    --enable-python3interp=dynamic  \
+    --with-features=huge            \
+    --with-x;
+checkReturnCode "Failed to configure vim.";
+
+printMessage "Successfully configured vim.";
+
 # Build vim
 printMessage "Building vim...";
 
-cd "${VIM_SRC_DIR_PATH}" && \
 make -j "${CPUS}";
 checkReturnCode "Failed to build vim.";
 
