@@ -1,4 +1,4 @@
 Scripts
 =======
 
-A repository of scripts.
+A repository that stores potentially useful bash scripts.
