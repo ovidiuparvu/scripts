@@ -6,12 +6,15 @@
 # =============================================================================
 
 CLANG_DIR_REL_PATH="clang";
+COMPILER_RT_DIR_REL_PATH="compiler-rt";
 CLANG_EXTRA_DIR_REL_PATH="extra";
 CLANG_SVN_URL="http://llvm.org/svn/llvm-project/cfe/trunk";
 CLANG_EXTRA_SVN_URL="http://llvm.org/svn/llvm-project/clang-tools-extra/trunk";
+COMPILER_RT_SVN_URL="http://llvm.org/svn/llvm-project/compiler-rt/trunk";
 CPUS=$(nproc --all);
+CURRENT_DIR_PATH=$(pwd);
 INSTALL_DIR_PATH="/usr/local";
-LLVM_DIR_REL_PATH="llvm";
+LLVM_DIR_PATH="${CURRENT_DIR_PATH}/llvm";
 LLVM_SVN_URL="http://llvm.org/svn/llvm-project/llvm/trunk";
 USERNAME=$(whoami);
 
@@ -72,6 +75,7 @@ ${SUDO_CMD} apt install -y  \
     cmake                   \
     g++                     \
     gcc                     \
+    git                     \
     make                    \
     python2.7               \
     subversion              \
@@ -81,9 +85,9 @@ checkReturnCode "Failed to install dependencies.";
 printMessage "Successfully installed dependencies.";
 
 # Check out LLVM
-printMessage "Checking out llvm into the ${LLVM_DIR_REL_PATH} directory...";
+printMessage "Checking out llvm into the ${LLVM_DIR_PATH} directory...";
 
-svn co ${LLVM_SVN_URL} "${LLVM_DIR_REL_PATH}";
+svn co ${LLVM_SVN_URL} "${LLVM_DIR_PATH}";
 checkReturnCode "Failed to check out llvm.";
 
 printMessage "Successfully checked out llvm.";
@@ -91,7 +95,7 @@ printMessage "Successfully checked out llvm.";
 # Check out Clang
 printMessage "Checking out clang...";
 
-cd "${LLVM_DIR_REL_PATH}/tools" &&              \
+cd "${LLVM_DIR_PATH}/tools" &&                  \
 svn co ${CLANG_SVN_URL} "${CLANG_DIR_REL_PATH}";
 checkReturnCode "Failed to check out clang.";
 
@@ -106,10 +110,19 @@ checkReturnCode "Failed to check out extra clang tools.";
 
 printMessage "Successfully checked out extra clang tools.";
 
+# Check out Compiler-RT (optional)
+printMessage "Checking out compiler-rt...";
+
+cd "${LLVM_DIR_PATH}/projects" &&                           \
+svn co ${COMPILER_RT_SVN_URL} "${COMPILER_RT_DIR_REL_PATH}";
+checkReturnCode "Failed to check out compiler-rt.";
+
+printMessage "Successfully checked out compiler-rt.";
+
 # Build LLVM and Clang
 printMessage "Building llvm and clang...";
 
-cd ../../.. &&                                      \
+cd "${LLVM_DIR_PATH}" &&                            \
 rm -rf build &&                                     \
 mkdir build &&                                      \
 cd build &&                                         \
@@ -137,7 +150,7 @@ printMessage "Successfully built llvm and clang.";
 # Run tests
 printMessage "Running tests...";
 
-make check-clang;
+make check-all;
 checkReturnCode "Failed to successfully run tests.";
 
 printMessage "Successfully ran tests.";
