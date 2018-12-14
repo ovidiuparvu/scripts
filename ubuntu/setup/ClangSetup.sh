@@ -72,6 +72,7 @@ printMessage "Installing dependencies...";
 
 ${SUDO_CMD} apt update &&   \
 ${SUDO_CMD} apt install -y  \
+    binutils                \
     cmake                   \
     g++                     \
     gcc                     \
@@ -135,10 +136,13 @@ cmake                                               \
     -DLLVM_INCLUDE_TOOLS="ON"                       \
     -DLLVM_BUILD_EXAMPLES="OFF"                     \
     -DLLVM_INCLUDE_EXAMPLES="OFF"                   \
-    -DLLVM_BUILD_TESTS="ON"                         \
-    -DLLVM_INCLUDE_TESTS="ON"                       \
+    -DLLVM_BUILD_TESTS="OFF"                        \
+    -DLLVM_INCLUDE_TESTS="OFF"                      \
+    -DLLVM_INCLUDE_BENCHMARKS="OFF"                 \
     -DLLVM_APPEND_VC_REV="ON"                       \
     -DLLVM_ENABLE_THREADS="ON"                      \
+    -DLLVM_ENABLE_LTO="Full"                        \
+    -DLLVM_USE_LINKER="gold"                        \
     -DLLVM_PARALLEL_COMPILE_JOBS="${CPUS}"          \
     -DLLVM_PARALLEL_LINK_JOBS="${CPUS}"             \
     .. &&                                           \
@@ -146,13 +150,6 @@ make -j "${CPUS}";
 checkReturnCode "Failed to build llvm and clang.";
 
 printMessage "Successfully built llvm and clang.";
-
-# Run tests
-printMessage "Running tests...";
-
-make check-all;
-
-printMessage "Successfully ran tests.";
 
 # Install clang
 printMessage "Installing clang...";
