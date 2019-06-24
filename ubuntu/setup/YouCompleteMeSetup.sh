@@ -87,7 +87,7 @@ printMessage "Installing YouCompleteMe...";
 
 cd "${YOU_COMPLETE_ME_DIR_PATH}" &&             \
 python "${YOU_COMPLETE_ME_INSTALL_FILE_PATH}"   \
-    --clang-completer                           \
+    --clangd-completer                          \
     --java-completer;
 checkReturnCode "Failed to install YouCompleteMe.";
 
