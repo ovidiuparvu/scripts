@@ -8,7 +8,7 @@
 CPUS=$(nproc --all);
 USERNAME=$(whoami);
 YOU_COMPLETE_ME_DIR_PATH="${HOME}/.vim/plugged/YouCompleteMe";
-YOU_COMPLETE_ME_GITHUB_URL="https://github.com/Valloric/YouCompleteMe.git";
+YOU_COMPLETE_ME_GITHUB_URL="https://github.com/ycm-core/YouCompleteMe.git";
 YOU_COMPLETE_ME_INSTALL_FILE_PATH="${YOU_COMPLETE_ME_DIR_PATH}/install.py";
 
 # If the current user is not "root" then there is a need for an explicit sudo
@@ -68,7 +68,6 @@ ${SUDO_CMD} apt install -y  \
     build-essential         \
     cmake                   \
     git                     \
-    python-dev              \
     python3-dev;
 checkReturnCode "Failed to install dependencies.";
 
@@ -86,7 +85,7 @@ printMessage "Successfully cloned YouCompleteMe git repository.";
 printMessage "Installing YouCompleteMe...";
 
 cd "${YOU_COMPLETE_ME_DIR_PATH}" &&             \
-python "${YOU_COMPLETE_ME_INSTALL_FILE_PATH}"   \
+python3 "${YOU_COMPLETE_ME_INSTALL_FILE_PATH}"  \
     --clangd-completer                          \
     --java-completer;
 checkReturnCode "Failed to install YouCompleteMe.";
